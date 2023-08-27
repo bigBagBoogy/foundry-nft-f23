@@ -26,7 +26,7 @@ import {MoodNft} from "../src/MoodNft.sol";
 
 contract MintMoodNft is Script {
     function run() external {
-        mintNftOnContract(0x262f51d97183dE5e2527e35f695353f454e054FF);
+        mintNftOnContract(0xd3e20C1942828d60310F6ddC4547ff736819Aff9);
     }
     // function run() external {
     //     address mostRecentlyDeployedBasicNft = DevOpsTools
@@ -41,16 +41,16 @@ contract MintMoodNft is Script {
     }
 }
 
-contract FlipMoodNft is Script {
-    uint256 public constant TOKEN_ID_TO_FLIP = 0;
+// contract FlipMoodNft is Script {
+//     uint256 public constant TOKEN_ID_TO_FLIP = 0;
 
-    function run() external {
-        flipMoodNft(0x262f51d97183dE5e2527e35f695353f454e054FF);
-    }
+//     function run() external {
+//         flipMoodNft(0x262f51d97183dE5e2527e35f695353f454e054FF);
+//     }
 
-    function flipMoodNft(address moodNftAddress) public {
-        vm.startBroadcast();
-        MoodNft(moodNftAddress).flipMood(TOKEN_ID_TO_FLIP);
-        vm.stopBroadcast();
-    }
-}
+//     function flipMoodNft(address moodNftAddress) public {
+//         vm.startBroadcast();
+//         MoodNft(moodNftAddress).flipMood(TOKEN_ID_TO_FLIP);
+//         vm.stopBroadcast();
+//     }
+// }

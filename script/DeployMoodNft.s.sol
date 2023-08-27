@@ -10,25 +10,6 @@ contract DeployMoodNft is Script {
     uint256 public DEFAULT_ANVIL_PRIVATE_KEY = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;
     uint256 public deployerKey;
 
-// storage variable:
- enum Month {
-    January,
-    February,
-    March,
-    April,
-    May,
-    June,
-    July,
-    August,
-    September,
-    October,
-    November,
-    December
-}
-
-Month public currentMonth = Month.January;
-
-
     function run() external returns (MoodNft) {
         if (block.chainid == 31337) {
             deployerKey = DEFAULT_ANVIL_PRIVATE_KEY;
@@ -36,41 +17,30 @@ Month public currentMonth = Month.January;
             deployerKey = vm.envUint("PRIVATE_KEY");
         }
 
-        string memory sadSvg = vm.readFile("./images/trophygold1.svg");
-        string memory month = 
-        string memory happySvg = vm.readFile("./images/trophygold2.svg");
+        string memory trophySvg = vm.readFile("./images/trophy.svg");
+        // string memory gold2Svg = vm.readFile("./images/trophygold2.svg");
 
         vm.startBroadcast(deployerKey);
         MoodNft moodNft = new MoodNft(
-            svgToImageURI(sadSvg),
-            svgToImageURI(happySvg)
+            // svgToImageURI(sadSvg),
+            // svgToImageURI(happySvg)
+            svgToImageURI(trophySvg)
         );
         vm.stopBroadcast();
         return moodNft;
     }
 
-    function getCurrentMonth() public returns (Month) {
-    Month current = currentMonth; // Store the current month
-
-    if (currentMonth == Month.December) {
-        currentMonth = Month.January;
-    } else {
-        currentMonth = Month(uint256(currentMonth) + 1);
-    }
-
-    return current; // Return the stored current month
-}
-
-
-
+    // example:
+    // '<svg width="500" height="500" viewBox="0 0 285 350" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M150,0,L75,200,L225,200,Z"></path></svg>'
+    // would return ""
     // You could also just upload the raw SVG and have solildity convert it!
-    function svgToImageURI(string memory svg) public pure returns (string memory) {
-        // example:
-        // '<svg width="500" height="500" viewBox="0 0 285 350" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="black" d="M150,0,L75,200,L225,200,Z"></path></svg>'
-        // would return ""
+
+    function svgToImageURI(string memory trophySvg) public view returns (string memory) {
         string memory baseURL = "data:image/svg+xml;base64,";
-        string memory svgBase64Encoded = Base64.encode(bytes(string(abi.encodePacked(svg))));
-        return string(abi.encodePacked(baseURL, svgBase64Encoded));
+        string memory svgBase64EncodedTropy = Base64.encode(bytes(string(abi.encodePacked(trophySvg))));
+        string memory result = string(abi.encodePacked(baseURL, svgBase64EncodedTropy));
+        console.log(result);
+        return string(abi.encodePacked(baseURL, svgBase64EncodedTropy));
     }
 }
 

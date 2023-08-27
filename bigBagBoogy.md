@@ -78,6 +78,16 @@ have fun!
 The DeployMoodNft.sol script has the a-z for reading in an img file, converting it to base64,
 concatenating it, base64 that and then concatenating it woth the metaData to the tokenUri.
 
-1. line 20 read in svg files
-2. line 25 upon deploy call: svgToImageURI
+1. line 39 read in svg files
+2. line 45 upon deploy call: svgToImageURI
 3. In MoodNft.sol the ImageURI is concatenated with the metaData
+
+4. source .env
+
+5. forge script script/DeployMoodNft.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+
+0xd3e20C1942828d60310F6ddC4547ff736819Aff9 sepolia
+
+after deploying MoodNft go to interactions and replace contract in function run()
+
+6. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv

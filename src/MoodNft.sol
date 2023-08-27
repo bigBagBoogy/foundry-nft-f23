@@ -28,25 +28,25 @@ import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
 contract MoodNft is ERC721, Ownable {
     error ERC721Metadata__URI_QueryFor_NonExistentToken();
-    error MoodNft__CantFlipMoodIfNotOwner();
+    // error MoodNft__CantFlipMoodIfNotOwner();
 
-    enum NFTState {
-        HAPPY,
-        SAD
-    }
+    // enum NFTState {
+    //     HAPPY,
+    //     SAD
+    // }
 
     uint256 private s_tokenCounter;
-    string private s_sadSvgUri;
-    string private s_happySvgUri;
+    string private s_trophy;
+    // string private s_happySvgUri;
 
-    mapping(uint256 => NFTState) private s_tokenIdToState;
+    // mapping(uint256 => NFTState) private s_tokenIdToState;
 
     event CreatedNFT(uint256 indexed tokenId);
 
-    constructor(string memory sadSvgUri, string memory happySvgUri) ERC721("Mood NFT", "MN") {
+    constructor(string memory trophy) ERC721("Throphy", "NFT") {
         s_tokenCounter = 0;
-        s_sadSvgUri = sadSvgUri;
-        s_happySvgUri = happySvgUri;
+        s_trophy = trophy;
+        // s_happySvgUri = happySvgUri;
     }
 
     function mintNft() public {
@@ -55,17 +55,17 @@ contract MoodNft is ERC721, Ownable {
         emit CreatedNFT(s_tokenCounter);
     }
 
-    function flipMood(uint256 tokenId) public {
-        if (!_isApprovedOrOwner(msg.sender, tokenId)) {
-            revert MoodNft__CantFlipMoodIfNotOwner();
-        }
+    // function flipMood(uint256 tokenId) public {
+    //     if (!_isApprovedOrOwner(msg.sender, tokenId)) {
+    //         revert MoodNft__CantFlipMoodIfNotOwner();
+    //     }
 
-        if (s_tokenIdToState[tokenId] == NFTState.HAPPY) {
-            s_tokenIdToState[tokenId] = NFTState.SAD;
-        } else {
-            s_tokenIdToState[tokenId] = NFTState.HAPPY;
-        }
-    }
+    //     if (s_tokenIdToState[tokenId] == NFTState.HAPPY) {
+    //         s_tokenIdToState[tokenId] = NFTState.SAD;
+    //     } else {
+    //         s_tokenIdToState[tokenId] = NFTState.HAPPY;
+    //     }
+    // }
 
     function _baseURI() internal pure override returns (string memory) {
         return "data:application/json;base64,";
@@ -75,11 +75,8 @@ contract MoodNft is ERC721, Ownable {
         if (!_exists(tokenId)) {
             revert ERC721Metadata__URI_QueryFor_NonExistentToken();
         }
-        string memory imageURI = s_happySvgUri;
+        string memory imageURI = s_trophy;
 
-        if (s_tokenIdToState[tokenId] == NFTState.SAD) {
-            imageURI = s_sadSvgUri;
-        }
         return string(
             abi.encodePacked(
                 _baseURI(),
@@ -88,8 +85,8 @@ contract MoodNft is ERC721, Ownable {
                         abi.encodePacked(
                             '{"name":"',
                             name(), // You can add whatever name here
-                            '", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", ',
-                            '"attributes": [{"trait_type": "moodiness", "value": 100}], "image":"',
+                            '", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
+                            '"attributes": [{"trait_type": "gold", "value": 100}], "image":"',
                             imageURI,
                             '"}'
                         )
@@ -99,12 +96,15 @@ contract MoodNft is ERC721, Ownable {
         );
     }
 
-    function getHappySVG() public view returns (string memory) {
-        return s_happySvgUri;
-    }
+    // function getHappySVG() public view returns (string memory) {
+    //     return s_happySvgUri;
+    // }
 
-    function getSadSVG() public view returns (string memory) {
-        return s_sadSvgUri;
+    // function getSadSVG() public view returns (string memory) {
+    //     return s_sadSvgUri;
+    // }
+    function getTrophySVG() public view returns (string memory) {
+        return s_trophy;
     }
 
     function getTokenCounter() public view returns (uint256) {
