@@ -36,17 +36,19 @@ contract MoodNft is ERC721, Ownable {
     // }
 
     uint256 private s_tokenCounter;
-    string private s_trophy;
-    // string private s_happySvgUri;
+    string private s_trophyGold;
+    string private s_trophySilver;
+    string private s_trophyBronze;
 
     // mapping(uint256 => NFTState) private s_tokenIdToState;
 
     event CreatedNFT(uint256 indexed tokenId);
 
-    constructor(string memory trophy) ERC721("Throphy", "NFT") {
+    constructor(string memory trophyGold, trophySilver, trophyBronze) ERC721("Throphy", "NFT") {
         s_tokenCounter = 0;
-        s_trophy = trophy;
-        // s_happySvgUri = happySvgUri;
+        s_trophyGold = trophyGold;
+        s_trophySilver = trophySilver;
+        s_trophyBronze = trophyBronze;
     }
 
     function mintNft() public {
@@ -86,7 +88,7 @@ contract MoodNft is ERC721, Ownable {
                             '{"name":"',
                             name(), // You can add whatever name here
                             '", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
-                            '"attributes": [{"trait_type": "gold", "value": 100}], "image":"',
+                            '"attributes": [{"trait_type": "Montly Winner", "value": 100}], "image":"',
                             imageURI,
                             '"}'
                         )
@@ -104,7 +106,15 @@ contract MoodNft is ERC721, Ownable {
     //     return s_sadSvgUri;
     // }
     function getTrophySVG() public view returns (string memory) {
-        return s_trophy;
+        return s_trophyGold;
+    }
+
+    function getTrophySVG() public view returns (string memory) {
+        return s_trophySilver;
+    }
+
+    function getTrophySVG() public view returns (string memory) {
+        return s_trophyBronze;
     }
 
     function getTokenCounter() public view returns (uint256) {
