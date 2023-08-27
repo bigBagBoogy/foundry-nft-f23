@@ -26,7 +26,7 @@ import {MoodNft} from "../src/MoodNft.sol";
 
 contract MintMoodNft is Script {
     function run() external {
-        mintNftOnContract(0xd3e20C1942828d60310F6ddC4547ff736819Aff9);
+        mintNftOnContract(0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF);
     }
     // function run() external {
     //     address mostRecentlyDeployedBasicNft = DevOpsTools
