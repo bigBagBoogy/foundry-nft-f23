@@ -88,6 +88,7 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 0xd3e20C1942828d60310F6ddC4547ff736819Aff9 sepolia gold
 0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF sepolia silver
+0x017B5b379415036808C20989fAbBE40834c98a46 sepolia bronze
 
 after deploying MoodNft go to interactions and replace contract in function run()
 

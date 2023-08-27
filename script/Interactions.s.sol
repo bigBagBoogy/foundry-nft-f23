@@ -26,13 +26,11 @@ import {MoodNft} from "../src/MoodNft.sol";
 
 contract MintMoodNft is Script {
     function run() external {
-        mintNftOnContract(0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF);
+        mintNftOnContract(0x017B5b379415036808C20989fAbBE40834c98a46);
     }
-    // function run() external {
-    //     address mostRecentlyDeployedBasicNft = DevOpsTools
-    //         .get_most_recent_deployment("MoodNft", block.chainid);
-    //     mintNftOnContract(mostRecentlyDeployedBasicNft);
-    // }
+    // gold:  0xd3e20C1942828d60310F6ddC4547ff736819Aff9
+    // silver: 0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF
+    // bronze:  0x017B5b379415036808C20989fAbBE40834c98a46
 
     function mintNftOnContract(address moodNftAddress) public {
         vm.startBroadcast();

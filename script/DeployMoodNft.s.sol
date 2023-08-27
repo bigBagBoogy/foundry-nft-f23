@@ -18,14 +18,14 @@ contract DeployMoodNft is Script {
         }
 
         // string memory trophyGoldSvg = vm.readFile("./images/trophy.svg");
-        string memory trophySilverSvg = vm.readFile("./images/trophy-silver.svg");
-        // string memory trophyBronzeSvg = vm.readFile("./images/trophy-bronze.svg");
+        // string memory trophySilverSvg = vm.readFile("./images/trophy-silver.svg");
+        string memory trophyBronzeSvg = vm.readFile("./images/trophy-bronze.svg");
 
         vm.startBroadcast(deployerKey);
         MoodNft moodNft = new MoodNft(          
             // svgToImageURI(trophyGoldSvg),
-            svgToImageURI(trophySilverSvg)
-            // svgToImageURI(trophyBronzeSvg)
+            // svgToImageURI(trophySilverSvg)
+            svgToImageURI(trophyBronzeSvg)
         );
         vm.stopBroadcast();
         return moodNft;

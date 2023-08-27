@@ -37,18 +37,18 @@ contract MoodNft is ERC721, Ownable {
 
     uint256 private s_tokenCounter;
     // string private s_trophyGold;
-    string private s_trophySilver;
-    // string private s_trophyBronze;
+    // string private s_trophySilver;
+    string private s_trophyBronze;
 
     // mapping(uint256 => NFTState) private s_tokenIdToState;
 
     event CreatedNFT(uint256 indexed tokenId);
 
-    constructor(string memory trophySilver) ERC721("Throphy", "NFT") {
+    constructor(string memory trophyBronze) ERC721("Throphy", "NFT") {
         s_tokenCounter = 0;
         // s_trophyGold = trophyGold;
-        s_trophySilver = trophySilver;
-        // s_trophyBronze = trophyBronze;
+        // s_trophySilver = trophySilver;
+        s_trophyBronze = trophyBronze;
     }
 
     function mintNft() public {
@@ -63,7 +63,7 @@ contract MoodNft is ERC721, Ownable {
 
     function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
         require(_exists(tokenId), "Token does not exist");
-        string memory imageURI = s_trophySilver;
+        string memory imageURI = s_trophyBronze;
         return string(
             abi.encodePacked(
                 _baseURI(),
@@ -73,7 +73,7 @@ contract MoodNft is ERC721, Ownable {
                             '{"name":"',
                             name(), // Customize name if needed
                             '", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
-                            '"attributes": [{"trait_type": "Monthly Winner", "value": 100}], "image":"',
+                            '"attributes": [{"trait_type": "Monthly 3rd Winner", "value": 50}], "image":"',
                             imageURI,
                             '"}'
                         )
@@ -88,7 +88,7 @@ contract MoodNft is ERC721, Ownable {
     // }
 
     function getSilverTrophySVG() public view returns (string memory) {
-        return s_trophySilver;
+        return s_trophyBronze;
     }
 
     // function getBronzeTrophySVG() public view returns (string memory) {
