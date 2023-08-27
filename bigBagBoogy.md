@@ -77,3 +77,7 @@ have fun!
 
 The DeployMoodNft.sol script has the a-z for reading in an img file, converting it to base64,
 concatenating it, base64 that and then concatenating it woth the metaData to the tokenUri.
+
+1. line 20 read in svg files
+2. line 25 upon deploy call: svgToImageURI
+3. In MoodNft.sol the ImageURI is concatenated with the metaData
