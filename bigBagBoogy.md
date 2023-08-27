@@ -72,3 +72,8 @@ otherwise you will get this NONCE error in the console and the functions wont wo
 have fun!
 
 ````
+
+# other:
+
+The DeployMoodNft.sol script has the a-z for reading in an img file, converting it to base64,
+concatenating it, base64 that and then concatenating it woth the metaData to the tokenUri.
