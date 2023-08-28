@@ -16,7 +16,7 @@ contract DeployTrophy is Script {
             deployerKey = vm.envUint("PRIVATE_KEY");
         }
 
-        string memory trophyGoldSvg = vm.readFile("./images/trophynew.svg");
+        string memory trophyGoldSvg = vm.readFile("./images/zombieblue.svg");
 
         vm.startBroadcast(deployerKey);
         Trophy trophy = new Trophy(          

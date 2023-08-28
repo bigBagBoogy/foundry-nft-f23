@@ -13,7 +13,7 @@ contract Trophy is ERC721, Ownable {
 
     event CreatedNFT(uint256 indexed tokenId);
 
-    constructor(string memory trophyGold) ERC721("Throphy", "NFT") {
+    constructor(string memory trophy) ERC721("ZobieTropy", "GMM") {
         s_tokenCounter = 0;
         s_trophy = trophy;
     }
