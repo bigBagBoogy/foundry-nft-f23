@@ -2,29 +2,49 @@
 pragma solidity ^0.8.19;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Trophy} from "../src/Trophy.sol";
+import {Trophya} from "../src/Trophya.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
-contract Minter is Script {
+contract Mintera is Script {
     function run() external {
-        // player, contractAddress
+        string memory svg = vm.readFile("./images/zombiegreener.svg");
         address winner = pickOneOfTwo();
-        mintNftOnContract(winner, 0x1288cd7D89f29350c1D28D4A617557da2b8437B0);
-        string memory svg = vm.readFile("./images/zombieblue.svg");
+        // player, trophyaAddress
+        mintNftOnContract(winner, 0x5b24C9A4A3f3b6dA228707C44710208Ae8229839, svg);
     }
 
-    function svgToImageURI(string memory trophySvg) public pure returns (string memory) {
-        string memory baseURL = "data:image/svg+xml;base64,";
-        string memory svgBase64EncodedTropy = Base64.encode(bytes(string(abi.encodePacked(trophySvg))));
-        // string memory result = string(abi.encodePacked(baseURL, svgBase64EncodedTropy));
-        // console.log(result);
-        return string(abi.encodePacked(baseURL, svgBase64EncodedTropy));
-    }
-
-    function mintNftOnContract(address player, address trophyAddress) public {
+    function mintNftOnContract(address winner, address trophyaAddress, string memory svg) public {
         vm.startBroadcast();
-        Trophy(trophyAddress).mintNft(player);
+        Trophya(trophyaAddress).mintNFT(winner, svgToTokenURI(svg));
         vm.stopBroadcast();
+    }
+
+    // function svgToImageURI(string memory svg) public pure returns (string memory) {
+    //     string memory baseURL = "data:image/svg+xml;base64,";
+    //     string memory svgBase64EncodedSvg = Base64.encode(bytes(string(abi.encodePacked(svg))));
+    //     string memory result = string(abi.encodePacked(baseURL, svgBase64EncodedSvg));
+    //     tokenURI(result);
+    //     return string(abi.encodePacked(baseURL, svgBase64EncodedSvg));
+    // }
+    function svgToTokenURI(string memory svg) public pure returns (string memory) {
+        string memory baseURL = "data:image/svg+xml;base64,";
+        string memory svgBase64EncodedSvg = Base64.encode(bytes(string(abi.encodePacked(svg))));
+        string memory imageURI = string(abi.encodePacked(baseURL, svgBase64EncodedSvg));
+        return string(
+            abi.encodePacked(
+                baseURL,
+                Base64.encode(
+                    bytes(
+                        abi.encodePacked(
+                            '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
+                            '"attributes": [{"trait_type": "Monthly Winner", "value": 200}], "image":"',
+                            imageURI,
+                            '"}'
+                        )
+                    )
+                )
+            )
+        );
     }
 
     function pickOneOfTwo() public view returns (address winner) {

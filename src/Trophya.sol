@@ -13,8 +13,8 @@ contract Trophya is ERC721URIStorage, Ownable {
         s_tokenCounter = 0;
     }
 
-    function mintNFT(address to, uint256 tokenId, string memory tokenURI) external onlyOwner {
-        tokenId = s_tokenCounter;
+    function mintNFT(address to, string memory tokenURI) external onlyOwner {
+        uint256 tokenId = s_tokenCounter;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, tokenURI);
         s_tokenCounter++;
