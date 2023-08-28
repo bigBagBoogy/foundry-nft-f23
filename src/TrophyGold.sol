@@ -3,12 +3,13 @@ pragma solidity 0.8.19;
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract BasicNft is ERC721 {
-    error BasicNft__TokenUriNotFound();
+contract TrophyGold is ERC721 {
+    error TrophyGold__TokenUriNotFound();
+
     mapping(uint256 tokenId => string tokenUri) private s_tokenIdToUri;
     uint256 private s_tokenCounter;
 
-    constructor() ERC721("Dogie", "DOG") {
+    constructor() ERC721("Trophy", "GOLD") {
         s_tokenCounter = 0;
     }
 
@@ -18,11 +19,9 @@ contract BasicNft is ERC721 {
         s_tokenCounter = s_tokenCounter + 1;
     }
 
-    function tokenURI(
-        uint256 tokenId
-    ) public view override returns (string memory) {
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
         if (!_exists(tokenId)) {
-            revert BasicNft__TokenUriNotFound();
+            revert TrophyGold__TokenUriNotFound();
         }
         return s_tokenIdToUri[tokenId];
     }

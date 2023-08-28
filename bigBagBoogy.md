@@ -93,3 +93,11 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 after deploying MoodNft go to interactions and replace contract in function run()
 
 6. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+
+# polygon
+
+7. forge script script/DeployMoodNft.s.sol --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+
+8. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+
+polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d

@@ -6,7 +6,7 @@
 // import {MoodNft} from "../src/MoodNft.sol";
 // import {Test, console} from "forge-std/Test.sol";
 // import {StdCheats} from "forge-std/StdCheats.sol";
-// import {MintBasicNft} from "../script/Interactions.s.sol";
+// import {MintTrophyGold} from "../script/Interactions.s.sol";
 
 // contract MoodNftTest is StdCheats, Test {
 //     string constant NFT_NAME = "Mood NFT";
