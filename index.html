@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFT Minting</title>
+  </head>
+  <body>
+    <button id="mintButton">Mint NFT</button>
+
+    <script type="module">
+      import { mint } from "./base64.js";
+
+      const mintButton = document.getElementById("mintButton");
+
+      mintButton.addEventListener("click", mint);
+    </script>
+  </body>
+</html>
