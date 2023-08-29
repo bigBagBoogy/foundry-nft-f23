@@ -1,5 +1,5 @@
 export const contractAddress = "0x347444048601eb11081Ee6B97B417C57B2d7f740";
-export const abiGameProgressAndTopFive = [
+export const abi = [
   {
     inputs: [
       {

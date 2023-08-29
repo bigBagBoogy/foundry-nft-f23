@@ -25,7 +25,7 @@ contract Mintera is Script {
         string memory metadata = string(
             abi.encodePacked(
                 '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
-                '"attributes": [{"trait_type": "Monthly Winner", "value": "200"}], "image":"',
+                '"attributes": {"trait_type": "Monthly Winner", "value": "200"}, "image":"',
                 imageURI,
                 '"}'
             )

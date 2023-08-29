@@ -24,7 +24,7 @@ export async function mint() {
     console.error("Web3 provider not found (e.g., MetaMask)");
   }
 }
-async function encodeImageToBase64(imageUrl) {
+export async function encodeImageToBase64(imageUrl) {
   try {
     const response = await fetch(imageUrl);
     const data = await response.blob();
@@ -40,7 +40,7 @@ async function encodeImageToBase64(imageUrl) {
     const metaData =
       '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ';
     const metaData2 =
-      '"attributes": [{"trait_type": "Monthly Winner", "value": "200"}], "image":"';
+      '"attributes": {"trait_type": "Monthly Winner", "value": "200"}, "image":"';
     const closingTag = '"}';
     const imgUri = `data:image/svg+xml;base64,${base64Image.split(",")[1]}`;
 

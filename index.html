@@ -3,17 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>NFT Minting</title>
+    <script src="base64.js" type="module"></script>
   </head>
   <body>
     <button id="mintButton">Mint NFT</button>
+    <button id="checkURIbutton">Check URI</button>
+
+    <h2>Your Token MetaData will look like this:</h2>
+
+    <div id="uriContainer"></div>
 
     <script type="module">
-      import { mint } from "./base64.js";
+      import { mint, encodeImageToBase64 } from "./base64.js";
 
       const mintButton = document.getElementById("mintButton");
+      const checkURIbutton = document.getElementById("checkURIbutton");
+      const uriContainer = document.getElementById("uriContainer");
 
-      mintButton.addEventListener("click", mint);
+      checkURIbutton.addEventListener("click", async () => {
+        const imgUri = await encodeImageToBase64("./images/zombieblue.svg");
+        uriContainer.textContent = imgUri;
+      });
+      mintButton.addEventListener("click", async () => {
+        const imgUri = await encodeImageToBase64("./images/zombieblue.svg");
+        uriContainer.textContent = imgUri;
+        const uri = await mint(imgUri); // Wait for the promise to resolve
+      });
     </script>
   </body>
 </html>
