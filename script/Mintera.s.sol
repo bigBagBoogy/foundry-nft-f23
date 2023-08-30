@@ -7,8 +7,8 @@ import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
 contract Mintera is Script {
     function run() external {
-        string memory svg = vm.readFile("./images/MetaMask_Fox.svg");
-        mintNftOnContract(0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f, 0x347444048601eb11081Ee6B97B417C57B2d7f740, svg);
+        string memory svg = vm.readFile("./images/rockbear.svg");
+        mintNftOnContract(0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f, 0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f, svg);
     }
 
     function mintNftOnContract(address winner, address trophyaAddress, string memory svg) public {
@@ -24,8 +24,8 @@ contract Mintera is Script {
 
         string memory metadata = string(
             abi.encodePacked(
-                '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
-                '"attributes": {"trait_type": "Monthly Winner", "value": "200"}, "image":"',
+                '{"name":"rockbear winner", "description":"NFT for the monthly top-score, 100% on Chain!", ',
+                '"attributes": {"trait_type": "Monthly Winner", "value": "210"}, "image":"',
                 imageURI,
                 '"}'
             )

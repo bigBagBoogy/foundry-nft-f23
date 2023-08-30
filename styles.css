@@ -37,7 +37,14 @@
     padding: 50px;
     margin-top: 200px;
     white-space: pre-wrap;
+    overflow-x: auto; /* Add a horizontal scrollbar when necessary */
+    max-width: 100%; /* Limit the container's width to the viewport */
   }
+  #imageContainer {
+    max-width: 25%;
+  }
+  
+  
   .h2 {
     margin-top: 180px;
   }

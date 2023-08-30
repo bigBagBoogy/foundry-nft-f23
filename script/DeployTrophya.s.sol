@@ -16,7 +16,7 @@ contract DeployTrophya is Script {
         }
 
         vm.startBroadcast(deployerKey);
-        Trophya trophya = new Trophya("zombieTrophy", "GMM");
+        Trophya trophya = new Trophya("Trophy", "GMM");
         vm.stopBroadcast();
         return trophya;
     }

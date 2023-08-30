@@ -84,7 +84,7 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 4. source .env
 
-5. forge script script/DeployTrophy.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
+5. forge script script/DeployTrophya.s.sol:DeployTrophya --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
 
 0xd3e20C1942828d60310F6ddC4547ff736819Aff9 sepolia gold
 0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF sepolia silver
@@ -95,7 +95,7 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 after deploying go to interactions (or minter) and replace contract in function run()
 
-6. forge script script/Minter.s.sol:Minter --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
+6. forge script script/Mintera.s.sol:Mintera --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
 
 # polygon
 
@@ -104,3 +104,18 @@ after deploying go to interactions (or minter) and replace contract in function 
 8. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
 
 polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d
+
+# issues:
+
+Compiler run successful!
+2023-08-29T17:34:41.304456Z ERROR sharedbackend: Failed to send/recv `basic` err=GetAccount(0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f,
+error sending request for url (https://eth-sepolia.g.alchemy.com/v2/69txysSR3src6m4REhIftFAI2BYyEgcN): connection error: unexpected end of file
+
+Context:
+
+- Error #0: connection error: unexpected end of file
+- Error #1: unexpected end of file) address=0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f
+  Error:
+  Failed to get account for 0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f: 0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f
+
+# above is probably a network issue (italy wifi)

@@ -14,6 +14,7 @@
     <h2>Your Token MetaData will look like this:</h2>
 
     <div id="uriContainer"></div>
+    <img id="imageContainer" src="" alt="NFT Image" />
 
     <script type="module">
       import { mint, encodeImageToBase64 } from "./base64.js";
@@ -21,15 +22,18 @@
       const mintButton = document.getElementById("mintButton");
       const checkURIbutton = document.getElementById("checkURIbutton");
       const uriContainer = document.getElementById("uriContainer");
+      const svgImage = "images/rockbear.svg";
 
       checkURIbutton.addEventListener("click", async () => {
-        const imgUri = await encodeImageToBase64("./images/zombieblue.svg");
-        uriContainer.textContent = imgUri;
+        const { metadata, imgUri } = await encodeImageToBase64(svgImage);
+        uriContainer.textContent = metadata;
+        imageContainer.src = imgUri; // Set the src attribute to display the image
       });
       mintButton.addEventListener("click", async () => {
-        const imgUri = await encodeImageToBase64("./images/zombieblue.svg");
-        uriContainer.textContent = imgUri;
-        const uri = await mint(imgUri); // Wait for the promise to resolve
+        const { metadata, imgUri } = await encodeImageToBase64(svgImage);
+        uriContainer.textContent = metadata;
+        imageContainer.src = imgUri; // Set the src attribute to display the image
+        await mint(); // Wait for the promise to resolve
       });
     </script>
   </body>

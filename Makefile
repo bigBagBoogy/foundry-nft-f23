@@ -40,7 +40,7 @@ ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 endif
 
 deploy:
-	@forge script script/DeployTrophyGold.s.sol:DeployTrophyGold $(NETWORK_ARGS)
+	@forge script script/DeployTrophyaGold.s.sol:DeployTrophyaGold $(NETWORK_ARGS)
 
 deployMood:
 	@forge script script/DeployMoodNft.s.sol:DeployMoodNft $(NETWORK_ARGS)
