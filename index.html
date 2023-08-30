@@ -10,7 +10,7 @@
   <body>
     <button id="mintButton">Mint NFT</button>
     <button id="checkURIbutton">Check URI</button>
-
+    <div id="countdown"></div>
     <h2>Your Token MetaData will look like this:</h2>
 
     <div id="uriContainer"></div>
@@ -22,19 +22,24 @@
       const mintButton = document.getElementById("mintButton");
       const checkURIbutton = document.getElementById("checkURIbutton");
       const uriContainer = document.getElementById("uriContainer");
-      const svgImage = "images/rockbear.svg";
+      const imageUrl = "/images/zombiehand.svg";
 
       checkURIbutton.addEventListener("click", async () => {
-        const { metadata, imgUri } = await encodeImageToBase64(svgImage);
+        const { metadata, imgUri } = await encodeImageToBase64(imageUrl);
         uriContainer.textContent = metadata;
         imageContainer.src = imgUri; // Set the src attribute to display the image
       });
       mintButton.addEventListener("click", async () => {
-        const { metadata, imgUri } = await encodeImageToBase64(svgImage);
+        const { metadata, tokenUri, imgUri } = await encodeImageToBase64(
+          imageUrl
+        );
         uriContainer.textContent = metadata;
         imageContainer.src = imgUri; // Set the src attribute to display the image
-        await mint(); // Wait for the promise to resolve
+
+        await mint(tokenUri);
       });
     </script>
+
+    <script src="countdown.js"></script>
   </body>
 </html>

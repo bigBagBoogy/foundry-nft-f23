@@ -105,6 +105,10 @@ after deploying go to interactions (or minter) and replace contract in function 
 
 polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d
 
+# infura sepolia
+
+9. forge script script/Mintera.s.sol:Mintera --rpc-url $INFURA_SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+
 # issues:
 
 Compiler run successful!
@@ -119,3 +123,18 @@ Context:
   Failed to get account for 0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f: 0xec5dbfed2e8a5e88de2ac7a9e5884b0bd4f6ca7f
 
 # above is probably a network issue (italy wifi)
+
+base64.js:18 Error minting NFT:
+{code: -32603, message: `[ethjs-query] while formatting outputs from RPC '{"value":{}}'`, stack: '{\n "code": -32603,\n "message": "[ethjs-query] wh…ogaeaoehlefnkodbefgpgknn/background-4.js:12:56730'}
+code
+:
+-32603
+message
+:
+"[ethjs-query] while formatting outputs from RPC '{\"value\":{}}'"
+stack
+:
+"{\n \"code\": -32603,\n \"message\": \"[ethjs-query] while formatting outputs from RPC '{\\\"value\\\":{}}'\",\n \"stack\": \"Error: [ethjs-query] while formatting outputs from RPC '{\\\"value\\\":{}}'\\n at new n (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:41774)\\n at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:44714)\\n at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:45324)\\n at M.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-3.js:1:7446)\\n at async Ue.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:399803)\\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-0.js:7:56465\\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:56730\"\n}\n at new n (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:41774)\n at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:44714)\n at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:45324)\n at M.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-3.js:1:7446)\n at async Ue.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:399803)\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-0.js:7:56465\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:56730"
+[[Prototype]]
+:
+Object

@@ -1,21 +1,17 @@
 import { ethers } from "./ethers-5.6.esm.min.js";
 import { abi, contractAddress } from "/constants.js";
-// import fs from "fs/promises"; // Use promises version of fs for async operations
 
-export async function mint() {
+export async function mint(tokenUri) {
   if (typeof window.ethereum !== "undefined") {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const contract = new ethers.Contract(contractAddress, abi, provider);
 
     try {
-      const testUri =
-        '{"name":"Mood NFT", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", "attributes": [{"trait_type": "moodiness", "value": 100}], "image":"data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgd2lkdGg9IjQwMCIgIGhlaWdodD0iNDAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgZmlsbD0ieWVsbG93IiByPSI3OCIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPGcgY2xhc3M9ImV5ZXMiPgogICAgPGNpcmNsZSBjeD0iNjEiIGN5PSI4MiIgcj0iMTIiLz4KICAgIDxjaXJjbGUgY3g9IjEyNyIgY3k9IjgyIiByPSIxMiIvPgogIDwvZz4KICA8cGF0aCBkPSJtMTM2LjgxIDExNi41M2MuNjkgMjYuMTctNjQuMTEgNDItODEuNTItLjczIiBzdHlsZT0iZmlsbDpub25lOyBzdHJva2U6IGJsYWNrOyBzdHJva2Utd2lkdGg6IDM7Ii8+Cjwvc3ZnPg=="}';
       const toAddress = "0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f";
-      // console.log(`minting ${metadata} to: ${toAddress}`);
-
+      console.log(`minting ${tokenUri} to: ${toAddress}`);
       const signer = provider.getSigner();
       const contractWithSigner = contract.connect(signer);
-      const tx = await contractWithSigner.mintNFT(toAddress, testUri); //metadata
+      const tx = await contractWithSigner.mintNFT(toAddress, tokenUri); //metadata
       await tx.wait();
       console.log("NFT minted successfully");
     } catch (error) {
@@ -46,8 +42,14 @@ export async function encodeImageToBase64(imageUrl) {
     const closingTag = '"}';
 
     const metadataString = `${metaData}${metaData2}${imgUri}${closingTag}`;
+    // Base64 encode the entire metadata string
+    const encodedMetadata = btoa(metadataString);
+    const jsonTokenUri = `data:application/json;base64,${encodedMetadata}`;
+    console.log(jsonTokenUri);
+
     return {
       metadata: metadataString,
+      tokenUri: jsonTokenUri,
       imgUri: imgUri,
     };
   } catch (error) {
