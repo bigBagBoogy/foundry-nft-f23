@@ -1,60 +1,31 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
-import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Trophy is ERC721, Ownable {
-    error ERC721Metadata__URI_QueryFor_NonExistentToken();
-
+contract Trophy is ERC721URIStorage, Ownable {
     uint256 private s_tokenCounter;
-    string private s_trophy;
+    //How about we add a state variable-"flag" called onlyOwnerOn and set it to false. Then we can write a function called "setPermission" which will be onlyOwner, that can be called by only me and sets "onlyOwnerOn" to true.
+    bool public open = true;
 
     event CreatedNFT(uint256 indexed tokenId);
 
-    constructor(string memory trophy) ERC721("ZobieTropy", "GMM") {
+    constructor(string memory name, string memory token) ERC721(name, token) {
         s_tokenCounter = 0;
-        s_trophy = trophy;
     }
 
-    function mintNft(address player) public {
-        _safeMint(player, s_tokenCounter);
-        s_tokenCounter = s_tokenCounter + 1;
+    function setPermission() external onlyOwner {
+        open = !open; // Toggle the value
+    }
+
+    function mintNFT(address to, string memory tokenURI) external {
+        require(open == true, "Minting not allowed yet");
+        open = false;
+        uint256 tokenId = s_tokenCounter;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, tokenURI);
+        s_tokenCounter++;
         emit CreatedNFT(s_tokenCounter);
-    }
-
-    function _baseURI() internal pure override returns (string memory) {
-        return "data:application/json;base64,";
-    }
-
-    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
-        require(_exists(tokenId), "Token does not exist");
-        string memory imageURI = s_trophy;
-        return string(
-            abi.encodePacked(
-                _baseURI(),
-                Base64.encode(
-                    bytes(
-                        abi.encodePacked(
-                            '{"name":"',
-                            name(), // Customize name if needed
-                            '", "description":"An NFT for the monthly top-score, 100% on Chain!", ',
-                            '"attributes": [{"trait_type": "Monthly Top Winner", "value": 150}], "image":"',
-                            imageURI,
-                            '"}'
-                        )
-                    )
-                )
-            )
-        );
-    }
-
-    function getGoldTrophySVG() public view returns (string memory) {
-        return s_trophy;
-    }
-
-    function getTokenCounter() public view returns (uint256) {
-        return s_tokenCounter;
     }
 }

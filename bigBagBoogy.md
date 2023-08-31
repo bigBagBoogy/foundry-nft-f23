@@ -19,6 +19,7 @@ git push -u origin main
 6. At the end of the month the contract should automatically call the function
 7. write and test the new function/contract mintThreeNFTs.sol and fix the import of
    totalSupply() (line 17 now.)
+   chainlink oracle: 0x4bF2F12ab1Dd3d6d4417B14c69452787525E5eBf
 
 # let's:
 
@@ -86,7 +87,7 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 4. source .env
 
-5. forge script script/DeployTrophya.s.sol:DeployTrophya --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
+5. forge script script/DeployTrophy.s.sol:DeployTrophy --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
 
 0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f sepolia trophya.sol main
 
