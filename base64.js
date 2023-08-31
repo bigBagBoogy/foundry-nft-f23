@@ -11,7 +11,7 @@ export async function mint(tokenUri) {
       console.log(`minting ${tokenUri} to: ${toAddress}`);
       const signer = provider.getSigner();
       const contractWithSigner = contract.connect(signer);
-      const tx = await contractWithSigner.mintNFT(toAddress, tokenUri); //metadata
+      const tx = await contractWithSigner.mintNFT(toAddress, tokenUri);
       await tx.wait();
       console.log("NFT minted successfully");
     } catch (error) {
@@ -56,21 +56,6 @@ export async function encodeImageToBase64(imageUrl) {
     throw error;
   }
 }
-
-// async function encodeImageToBase64(imagePath) {
-//   try {
-//     const data = await fs.readFile(imagePath);
-//     const base64Image = data.toString("base64");
-
-//     const metaData =
-//       '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ';
-//     const metaData2 =
-//       '"attributes": [{"trait_type": "Monthly Winner", "value": "200"}], "image":"';
-//     const closingTag = '"}';
-//     const imgUri = `data:image/svg+xml;base64,${base64Image}`;
-
-//     return `${metaData}${metaData2}${imgUri}${closingTag}`;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
+export function testinteraction() {
+  console.log("test");
+}

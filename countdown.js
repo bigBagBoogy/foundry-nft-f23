@@ -1,3 +1,6 @@
+// import { encodeImageToBase64 } from "./encodeImageToBase64.js";
+import { testinteraction } from "./base64.js";
+
 function calculateCountdown() {
   const now = new Date();
   const endOfMonth = new Date(
@@ -20,7 +23,7 @@ function calculateCountdown() {
   return { days, hours, minutes, seconds };
 }
 
-function updateCountdown() {
+async function updateCountdown() {
   const countdownElement = document.getElementById("countdown");
   const countdown = calculateCountdown();
   const now = new Date();
@@ -36,7 +39,11 @@ function updateCountdown() {
   if (now > endOfMonth) {
     countdownElement.textContent = "NFT's have been sent to the winners";
     console.log("NFT's have been sent to the winners");
-    clearInterval(countdownInterval);
+    /////////this does not work scince there's no one signing the metamask transaction
+    // const imageUrl = "/images/zombiehand.svg";
+    // const tokenUri = encodeImageToBase64(imageUrl);
+    // await mint(tokenUri);
+    // clearInterval(countdownInterval);
   } else {
     countdownElement.innerHTML = `
         <p>Countdown to the next NFT awarding (CEST):</p>
@@ -44,6 +51,7 @@ function updateCountdown() {
       `;
   }
 }
+testinteraction();
 
 updateCountdown();
 const countdownInterval = setInterval(updateCountdown, 1000);

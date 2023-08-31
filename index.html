@@ -22,7 +22,7 @@
       const mintButton = document.getElementById("mintButton");
       const checkURIbutton = document.getElementById("checkURIbutton");
       const uriContainer = document.getElementById("uriContainer");
-      const imageUrl = "/images/zombiehand.svg";
+      const imageUrl = "/images/rockbear.svg";
 
       checkURIbutton.addEventListener("click", async () => {
         const { metadata, imgUri } = await encodeImageToBase64(imageUrl);
@@ -40,6 +40,7 @@
       });
     </script>
 
-    <script src="countdown.js"></script>
+    <!-- <script src="countdown.js"></script> -->
+    <script type="module" src="countdown.js"></script>
   </body>
 </html>

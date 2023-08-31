@@ -86,12 +86,7 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 5. forge script script/DeployTrophya.s.sol:DeployTrophya --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
 
-0xd3e20C1942828d60310F6ddC4547ff736819Aff9 sepolia gold
-0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF sepolia silver
-0x017B5b379415036808C20989fAbBE40834c98a46 sepolia bronze
-0x57DCC1f32c1cA7f1F5453668746489f1fDd152C4 sepolia new Trophy.sol
-0x1288cd7D89f29350c1D28D4A617557da2b8437B0 sepolia new Trophy.sol -> to Account3 (2266) Z_hand
-0x5b24C9A4A3f3b6dA228707C44710208Ae8229839 sepolia trophya.sol
+0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f sepolia trophya.sol main
 
 after deploying go to interactions (or minter) and replace contract in function run()
 
@@ -127,18 +122,17 @@ Context:
 base64.js:18 Error minting NFT:
 {code: -32603, message: `[ethjs-query] while formatting outputs from RPC '{"value":{}}'`, stack: '{\n "code": -32603,\n "message": "[ethjs-query] wh…ogaeaoehlefnkodbefgpgknn/background-4.js:12:56730'}
 code
-:
--32603
-message
-:
-"[ethjs-query] while formatting outputs from RPC '{\"value\":{}}'"
-stack
-:
-"{\n \"code\": -32603,\n \"message\": \"[ethjs-query] while formatting outputs from RPC '{\\\"value\\\":{}}'\",\n \"stack\": \"Error: [ethjs-query] while formatting outputs from RPC '{\\\"value\\\":{}}'\\n at new n (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:41774)\\n at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:44714)\\n at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:45324)\\n at M.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-3.js:1:7446)\\n at async Ue.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:399803)\\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-0.js:7:56465\\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:56730\"\n}\n at new n (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:41774)\n at s (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:44714)\n at Object.internal (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/common-2.js:16:45324)\n at M.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-3.js:1:7446)\n at async Ue.newUnapprovedTransaction (chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:399803)\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-0.js:7:56465\n at async chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/background-4.js:12:56730"
-[[Prototype]]
-:
-Object
+??????? seems to be a metamask issue. code was fine, minted succesful later ???????
 
 # issue when MEtamask not connected, or wrong account selected:
 
 Error minting NFT: Error: unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION, version=providers/5.1.2)
+
+# depreciated contracts:
+
+0xd3e20C1942828d60310F6ddC4547ff736819Aff9 sepolia gold
+0x7a0902f2BB39AC88b275c9Aa044E0E486FA014CF sepolia silver
+0x017B5b379415036808C20989fAbBE40834c98a46 sepolia bronze
+0x57DCC1f32c1cA7f1F5453668746489f1fDd152C4 sepolia new Trophy.sol
+0x1288cd7D89f29350c1D28D4A617557da2b8437B0 sepolia new Trophy.sol -> to Account3 (2266) Z_hand
+0x5b24C9A4A3f3b6dA228707C44710208Ae8229839 sepolia trophya.sol
