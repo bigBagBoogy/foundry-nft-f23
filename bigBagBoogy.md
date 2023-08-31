@@ -19,7 +19,10 @@ git push -u origin main
 6. At the end of the month the contract should automatically call the function
 7. write and test the new function/contract mintThreeNFTs.sol and fix the import of
    totalSupply() (line 17 now.)
+   ###
    chainlink oracle: 0x4bF2F12ab1Dd3d6d4417B14c69452787525E5eBf
+   to contract: 0x0A7e5c818b025EEf3a7785243aD0A3E3bFDB82CE
+   ###
 
 # let's:
 
