@@ -138,3 +138,7 @@ stack
 [[Prototype]]
 :
 Object
+
+# issue when MEtamask not connected, or wrong account selected:
+
+Error minting NFT: Error: unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION, version=providers/5.1.2)
