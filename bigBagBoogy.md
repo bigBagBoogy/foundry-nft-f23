@@ -9,14 +9,16 @@ git push -u origin main
 # todo:⭐️
 
 1. create a fresh new top5Nft.sol contract (within this directory).
-2. automate svg to base64
+2. done
 3. Create a receiver for the players topscore and place in the top5
-4. automate generating the URI
+4. Maybe have the metadata be constructed dynamically taking in game-specific data
    (so base64 imgURI + metadata: { topPlayer: 1 } { topScore: 500044515 } )
 5. Have 1 main function that upon calling with the parameters:
    main(500044515, 400068721, 200001582) which will reflect:
    topPlayer1topScore = 500044515
 6. At the end of the month the contract should automatically call the function
+7. write and test the new function/contract mintThreeNFTs.sol and fix the import of
+   totalSupply() (line 17 now.)
 
 # let's:
 
