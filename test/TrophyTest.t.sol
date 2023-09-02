@@ -79,6 +79,6 @@ contract TrophyTest is StdCheats, Test {
         bool isOpen = trophy.open();
 
         // Ensure the open variable was updated to true (onlyOwner should allow it)
-        assert(isOpen, "Owner was not able to set permission");
+        assert(isOpen == true, "Owner was not able to set permission");
     }
 }
