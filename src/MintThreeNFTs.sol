@@ -1,8 +1,10 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./src/GameProgressAndTopFive.sol"; // Import the GameProgressAndTopFive contract
+import {GameProgressAndTopFive} from "src/GameProgressAndTopFive.sol"; // Import the GameProgressAndTopFive contract
 
 // @dev Create a new smart contract function called mintThreeNFTs that takes six parameters: the addresses of three players and their corresponding token URIs. Inside this function:
 // a. Use the mintNFT function to mint NFTs individually for each player and their respective token URIs.
