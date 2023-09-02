@@ -11,12 +11,14 @@ contract TrophyTest is StdCheats, Test {
     string constant NFT_NAME = "Trophy";
     string constant NFT_SYMBOL = "GMM";
     Trophy public trophy;
+    bool public open = true;
 
     address public constant USER = address(1);
     address public constant USER2 = address(2);
 
     function setUp() public {
         trophy = new Trophy(NFT_NAME, NFT_SYMBOL); // Deploy Trophy directly
+        open = true;
     }
 
     function test_CanMintToAnyAddress() public {
@@ -58,14 +60,25 @@ contract TrophyTest is StdCheats, Test {
 
     // Now try with the owner account
     function test_ownerCanSetPermission() public {
+        open = false;
         vm.prank(USER);
-        bool success;
-        string memory errorMessage;
-
         // Attempt to call setPermission
-        (success, errorMessage) = address(trophy).call(abi.encodeWithSignature("setPermission()"));
-
+        trophy.setPermission();
         // Ensure the call was successful (onlyOwner should allow it)
-        assert(success, errorMessage);
+        assert(open == true, "Owner was not able to set permission");
+    }
+    // Now try with the owner account
+
+    function test_ownerCanSetPermission() public {
+        vm.prank(USER);
+
+        // Attempt to call setPermission on the trophy contract
+        trophy.setPermission();
+
+        // Access the open variable from the trophy contract to check if it was updated
+        bool isOpen = trophy.open();
+
+        // Ensure the open variable was updated to true (onlyOwner should allow it)
+        assert(isOpen, "Owner was not able to set permission");
     }
 }
