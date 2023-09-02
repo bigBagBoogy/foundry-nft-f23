@@ -67,5 +67,40 @@ contract TrophyTest is StdCheats, Test {
         // Ensure the call was successful (onlyOwner should allow it)
         assert(isOpen);
     }
-    // Now try with the owner account
+
+    function test_CannotMintWhenClosed() public {
+        // Ensure minting is initially not allowed
+        bool success = address(trophy).call(trophy.mintNFT.selector, USER, "test");
+
+        // Ensure the call was unsuccessful
+        assert(!success, "Minting was allowed when closed");
+
+        // Set permission to open minting
+        vm.prank(USER);
+        deployer.setPermission();
+
+        // Attempt to mint again
+        vm.prank(USER);
+        success = address(trophy).call(trophy.mintNFT.selector, USER, "test");
+
+        // Ensure the call was successful (minting should be allowed now)
+        assert(success, "Minting was not allowed when open");
+    }
+
+    function test_CreatedNFTEvent() public {
+        // Set permission to open minting
+        vm.prank(USER);
+        deployer.setPermission();
+
+        // Mint an NFT
+        vm.prank(USER);
+        (bool success, bytes memory data) = address(trophy).call(trophy.mintNFT.selector, USER, "test");
+
+        // Ensure the call was successful
+        assert(success, "Minting was not allowed when open");
+
+        // Check if the CreatedNFT event was emitted
+        (,,,, uint256 tokenId) = abi.decode(data, (address, bytes32, bytes, bytes32, uint256));
+        assert(tokenId > 0, "CreatedNFT event not emitted");
+    }
 }
