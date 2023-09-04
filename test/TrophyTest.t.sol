@@ -38,7 +38,6 @@ contract TrophyTest is StdCheats, Test {
         vm.prank(USER);
         trophy.mintNFT(USER, "test1");
         assert(trophy.balanceOf(USER) == 1);
-        vm.prank(USER);
         vm.expectRevert("Minting not allowed yet");
         trophy.mintNFT(USER, "test2");
     }
@@ -64,31 +63,33 @@ contract TrophyTest is StdCheats, Test {
     // Now try with the owner account
     function test_ownerCanSetPermission() public {
         bool isOpen = open;
-        vm.prank(USER);
-        // Attempt to call setPermission
+        // Attempt to call setPermission by trophy, which is owner
         trophy.setPermission();
         // Ensure the call was successful (onlyOwner should allow it)
         assert(isOpen);
     }
 
+    //!!!!!!!!!!!  below example of wrong logic    !!!!!!!!!!!!!// see way below explanation
+    // function test_CannotMintWhenClosed() public {
+    //     // Ensure minting is not allowed when closed
+    //     open = false;
+    //     // Ensure the call was unsuccessful
+    //     vm.expectRevert("Minting not allowed yet");
+    //     trophy.mintNFT(USER, "test");
+    // }
+    //!!!!!!!!!!!  above example of wrong logic    !!!!!!!!!!!!!// see way below explanation
+
     function test_CannotMintWhenClosed() public {
-        // Ensure minting is initially not allowed
-        open = false;
-        vm.prank(USER);
-        trophy.mintNFT(USER, "test");
-
-        // Ensure the call was unsuccessful
-        assert(s_tokenCounter == 0);
-
-        // have the owner set permission to open minting
-
+        // Close minting by calling setPermission
         trophy.setPermission();
 
-        // Attempt to mint again
-        vm.prank(USER);
+        // Ensure the call was unsuccessful
+        vm.expectRevert("Minting not allowed yet");
         trophy.mintNFT(USER, "test");
-
-        // Ensure the call was successful (minting should be allowed now)
-        assert(s_tokenCounter == 1);
     }
 }
+// You set open to false, expecting that minting should not be allowed, and you expect a revert with the message "Minting not allowed yet."
+
+// The issue here seems to be that the open state variable is directly modified in the test, but the state of the smart contract isn't updated. In Ethereum, state changes in the blockchain are not reflected immediately; they require a transaction to be mined. When you modify open in the test, it's only changed in the test environment, not in the deployed smart contract.
+
+// To properly test the behavior of the smart contract when it's closed for minting, you should use the setPermission function to toggle the open state within your test.
