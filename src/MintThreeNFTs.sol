@@ -15,7 +15,7 @@ contract MintThreeNFTs is ERC721URIStorage, Ownable {
     GameProgressAndTopFive public gameProgressContract;
     uint256 private _tokenIdCounter;
 
-    constructor(string memory name, string memory symbol, address _gameProgressContractAddress) ERC721(name, symbol) {}
+    constructor(string memory name, string memory symbol, address gameProgressContractAddress) ERC721(name, symbol) {}
 
     function mintThreeNFTs(
         address player1,
@@ -27,9 +27,9 @@ contract MintThreeNFTs is ERC721URIStorage, Ownable {
     ) external onlyOwner {
         // Call the getTopFivePlayers function from gameProgressContract
         (address[5] memory topPlayers,) = gameProgressContract.getTopFivePlayers();
-        address player1 = topPlayers[0];
-        address player2 = topPlayers[1];
-        address player3 = topPlayers[2];
+        player1 = topPlayers[0];
+        player2 = topPlayers[1];
+        player3 = topPlayers[2];
 
         uint256 tokenId1 = _tokenIdCounter;
         _safeMint(player1, tokenId1);

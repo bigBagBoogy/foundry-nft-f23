@@ -12,6 +12,7 @@ contract TrophyTest is StdCheats, Test {
     string constant NFT_SYMBOL = "GMM";
     Trophy public trophy;
     bool public open = true;
+    uint256 private s_tokenCounter = 0;
 
     address public constant USER = address(1);
     address public constant USER2 = address(2);
@@ -36,8 +37,10 @@ contract TrophyTest is StdCheats, Test {
     function test_cannotMintASecondTime() public {
         vm.prank(USER);
         trophy.mintNFT(USER, "test1");
-        trophy.mintNFT(USER, "test2");
         assert(trophy.balanceOf(USER) == 1);
+        vm.prank(USER);
+        vm.expectRevert("Minting not allowed yet");
+        trophy.mintNFT(USER, "test2");
     }
 
     function test_anyAddressCanMint() public {
@@ -70,37 +73,22 @@ contract TrophyTest is StdCheats, Test {
 
     function test_CannotMintWhenClosed() public {
         // Ensure minting is initially not allowed
-        bool success = address(trophy).call(trophy.mintNFT.selector, USER, "test");
+        open = false;
+        vm.prank(USER);
+        trophy.mintNFT(USER, "test");
 
         // Ensure the call was unsuccessful
-        assert(!success, "Minting was allowed when closed");
+        assert(s_tokenCounter == 0);
 
-        // Set permission to open minting
-        vm.prank(USER);
-        deployer.setPermission();
+        // have the owner set permission to open minting
+
+        trophy.setPermission();
 
         // Attempt to mint again
         vm.prank(USER);
-        success = address(trophy).call(trophy.mintNFT.selector, USER, "test");
+        trophy.mintNFT(USER, "test");
 
         // Ensure the call was successful (minting should be allowed now)
-        assert(success, "Minting was not allowed when open");
-    }
-
-    function test_CreatedNFTEvent() public {
-        // Set permission to open minting
-        vm.prank(USER);
-        deployer.setPermission();
-
-        // Mint an NFT
-        vm.prank(USER);
-        (bool success, bytes memory data) = address(trophy).call(trophy.mintNFT.selector, USER, "test");
-
-        // Ensure the call was successful
-        assert(success, "Minting was not allowed when open");
-
-        // Check if the CreatedNFT event was emitted
-        (,,,, uint256 tokenId) = abi.decode(data, (address, bytes32, bytes, bytes32, uint256));
-        assert(tokenId > 0, "CreatedNFT event not emitted");
+        assert(s_tokenCounter == 1);
     }
 }

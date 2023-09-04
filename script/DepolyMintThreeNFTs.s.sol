@@ -16,7 +16,7 @@ contract DeployMintThreeNFTs is Script {
         }
 
         vm.startBroadcast(deployerKey);
-        MintThreeNFTs mintThreeNFTs = new MintThreeNFTs("Winner!", "GIG"); // graspop idle game
+        MintThreeNFTs mintThreeNFTs = new MintThreeNFTs("Winner!", "GIG", 0xB0D9A95e06C436594b71F6a795d68F6F82299b22); // graspop idle game
         vm.stopBroadcast();
         return mintThreeNFTs;
     }
