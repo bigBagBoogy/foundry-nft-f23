@@ -9,7 +9,7 @@ git push -u origin main
 # todo:⭐️
 
 1. create a fresh new top5Nft.sol contract (within this directory).
-2. done
+2.
 3. Create a receiver for the players topscore and place in the top5
 4. Maybe have the metadata be constructed dynamically taking in game-specific data
    (so base64 imgURI + metadata: { topPlayer: 1 } { topScore: 500044515 } )
@@ -22,6 +22,10 @@ git push -u origin main
    ###
    chainlink oracle: 0x4bF2F12ab1Dd3d6d4417B14c69452787525E5eBf
    to contract: 0x0A7e5c818b025EEf3a7785243aD0A3E3bFDB82CE
+   Issue with chainlink automation mintNFT: GASLIMIT! 5,000,000
+   cost to mint hello kitty SVG: 8,915,397
+   we could: use even smaller SVG's  
+    we should: switch to using polygon, but the amount of gas might be the same in polygon, not solving anything
    ###
 
 # let's:
