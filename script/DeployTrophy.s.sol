@@ -16,7 +16,7 @@ contract DeployTrophy is Script {
         }
 
         vm.startBroadcast(deployerKey);
-        Trophy trophy = new Trophy("Trophy", "GMM");
+        Trophy trophy = new Trophy("ASCII", "NFT");
         vm.stopBroadcast();
         return trophy;
     }

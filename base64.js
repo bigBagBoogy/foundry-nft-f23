@@ -1,5 +1,6 @@
 import { ethers } from "./ethers-5.6.esm.min.js";
-import { abi, contractAddress } from "/constants.js";
+// import { abi, contractAddress } from "/constants.js";  // ethereum
+import { abi, contractAddress } from "/constants-polygon.js"; //  polygon
 
 export async function mint(tokenUri) {
   if (typeof window.ethereum !== "undefined") {
@@ -34,10 +35,9 @@ export async function encodeImageToBase64(imageUrl) {
       reader.readAsDataURL(data);
     });
 
-    const metaData =
-      '{"name":"winner", "description":"An NFT for the monthly top-score, 100% on Chain!", ';
+    const metaData = '{"name":"Rock-Bear", "description":"Hell yeah!", ';
     const metaData2 =
-      '"attributes": {"trait_type": "Monthly Winner", "value": "200"}, "image":"';
+      '"attributes": {"trait_type": "Purple", "value": "100"}, "image":"';
     const imgUri = `data:image/svg+xml;base64,${base64Image.split(",")[1]}`;
     const closingTag = '"}';
 

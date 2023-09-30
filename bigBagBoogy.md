@@ -104,11 +104,15 @@ after deploying go to interactions (or minter) and replace contract in function 
 
 # polygon
 
-7. forge script script/DeployMoodNft.s.sol --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+7. forge script script/DeployTrophy.s.sol --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --polygonscan-api-key $POLYGON_API_KEY -vvvv
 
-8. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vvvv
+8. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --polygonscan-api-key $POLYGON_API_KEY -vvvv
 
-polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d
+polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d --> good contract
+to mint on, but not verified!
+Use frontend for polygon?  
+change: import { abi, contractAddress } from "/constants.js"; //eth
+to: import { abi, contractAddress } from "/constants.js"; // polygon
 
 # infura sepolia
 

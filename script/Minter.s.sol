@@ -9,7 +9,9 @@ contract Minter is Script {
     function run() external {
         string memory svg = vm.readFile("./images/rockbearred.svg");
         //  to:   contract:
-        mintNftOnContract(0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f, 0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f, svg);
+        // ETH // mintNftOnContract(0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f, 0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f, svg);
+        // below is polygon contract address
+        mintNftOnContract(0xEC5DBFed2e8A5E88De2AC7a9E5884B0bD4F6Ca7f, 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d, svg);
         console.log(svgToTokenURI(svg));
     }
 
