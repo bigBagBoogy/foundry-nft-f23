@@ -1,6 +1,6 @@
 import { ethers } from "./ethers-5.6.esm.min.js";
-// import { abi, contractAddress } from "/constants.js";  // ethereum
-import { abi, contractAddress } from "/constants-polygon.js"; //  polygon
+import { abi, contractAddress } from "/constants.js"; // ethereum
+//import { abi, contractAddress } from "/constants-polygon.js"; //  polygon
 
 export async function mint(tokenUri) {
   if (typeof window.ethereum !== "undefined") {

@@ -2,7 +2,7 @@
 pragma solidity ^0.8.19;
 
 import {Script, console} from "forge-std/Script.sol";
-import {Trophya} from "../src/Trophya.sol";
+import {OpenNftMinter} from "../src/OpenNftMinter.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
 contract Minter is Script {
@@ -15,9 +15,9 @@ contract Minter is Script {
         console.log(svgToTokenURI(svg));
     }
 
-    function mintNftOnContract(address winner, address trophyaAddress, string memory svg) public {
+    function mintNftOnContract(address winner, address openNftMinterAddress, string memory svg) public {
         vm.startBroadcast();
-        Trophya(trophyaAddress).mintNFT(winner, svgToTokenURI(svg));
+        OpenNftMinter(openNftMinterAddress).mintNFT(winner, svgToTokenURI(svg));
         vm.stopBroadcast();
     }
 

@@ -3,7 +3,7 @@
 git init
 git branch -M main
 git add .
-git commit -m "amended code"
+git commit -m "added OpenNftMinter contract"
 git push -u origin main
 
 # todo:⭐️
@@ -21,7 +21,7 @@ git push -u origin main
    totalSupply() (line 17 now.)
    ###
    chainlink oracle: 0x4bF2F12ab1Dd3d6d4417B14c69452787525E5eBf
-   to contract: 0x0A7e5c818b025EEf3a7785243aD0A3E3bFDB82CE
+   to contract: 0x0A7e5c818b025EEf3a7785243aD0A3E3bFDB82CE \*\*\*1 time use, then closes!!!
    Issue with chainlink automation mintNFT: GASLIMIT! 5,000,000
    cost to mint hello kitty SVG: 8,915,397
    we could: use even smaller SVG's  
@@ -94,9 +94,10 @@ concatenating it, base64 that and then concatenating it woth the metaData to the
 
 4. source .env
 
-5. forge script script/DeployTrophy.s.sol:DeployTrophy --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
+5. forge script script/DeployOpenNftMinter.s.sol:DeployOpenNftMinter --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY -vv
 
-0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f sepolia trophya.sol main
+0x0d3F6Baf4639da5120B777E728Fd9eC184C1550f sepolia trophya.sol depreciated (onlyOwner)
+0xe30D6bB8993177Be246F3832E8A6aBd113256F25 sepolia OpenNftMinter main
 
 after deploying go to interactions (or minter) and replace contract in function run()
 
@@ -104,12 +105,13 @@ after deploying go to interactions (or minter) and replace contract in function 
 
 # polygon
 
-7. forge script script/DeployTrophy.s.sol --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --polygonscan-api-key $POLYGON_API_KEY -vvvv
+7. forge script script/DeployOpenNftMinter.s.sol --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast -vvvv
 
 8. forge script script/Interactions.s.sol:MintMoodNft --rpc-url $POLYGON_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --polygonscan-api-key $POLYGON_API_KEY -vvvv
 
 polygon trophy gold: 0xB840a9820e4dae24822De98B1d47e4Cc98946E4d --> good contract
-to mint on, but not verified!
+to mint on, but not verified! && OnlyOwner!!!
+polygon OpenNftMinter: 0x4f7A244A8Fd94935389cDFc528dE599850d4605c
 Use frontend for polygon?  
 change: import { abi, contractAddress } from "/constants.js"; //eth
 to: import { abi, contractAddress } from "/constants.js"; // polygon
@@ -141,6 +143,16 @@ code
 # issue when MEtamask not connected, or wrong account selected:
 
 Error minting NFT: Error: unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION, version=providers/5.1.2)
+
+# (solved) require not met:
+
+inpage.js:1 MetaMask - RPC Error: Internal JSON-RPC error.
+Error minting NFT:
+code: -32603, message: 'Internal JSON-RPC error.', \*\*\* message: 'execution reverted'}
+
+Execution reverted is due to contract call failure. The reverton is either by an accident, for example, when overflow occurs, or intentionally, for example, require() condition is not satisfied.
+
+In my case I forgot: `require(open == true, "Minting not allowed yet");`
 
 # depreciated contracts:
 
